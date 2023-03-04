@@ -6,21 +6,26 @@ import React, { useState, useEffect } from "react";
 import Alert from "./components/Alert";
 // import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+// type setAlert = {
+//   msg: (prevState: null) => null;
+//   type: string;
+// };
+
 function App() {
   const [mode, setMode] = useState("light"); //Whether dark mode is enabled or not
-  const [cAlert, setAlert] = useState(false);
+  const [cAlert, setAlert] = useState(null);
   const [chosenColor, setChosenColor] = useState("black");
 
-  const colorPalette = (color) => {
+  const colorPalette = (color: string) => {
     setChosenColor(color);
   };
-  const showAlert = (message, type) => {
+  const showAlert = (message: string, type: string) => {
     setAlert({
       msg: message,
       type: type,
     });
     setTimeout(() => {
-      setAlert(false);
+      setAlert(null);
     }, 1500);
   };
 
@@ -40,7 +45,8 @@ function App() {
     mode === "dark"
       ? (document.body.style.backgroundColor = chosenColor)
       : (document.body.style.backgroundColor = "white");
-  }, [toggleMode, chosenColor, mode]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [toggleMode, chosenColor]);
   return (
     // <Router>
     <>
@@ -51,7 +57,7 @@ function App() {
         toggleMode={toggleMode}
         colorPaletteHandler={colorPalette}
       />
-      <Alert cAlert={cAlert} />
+      <Alert customAlert={cAlert} />
       {/* <Routes> */}
       <div className="container my-3">
         {/* path="/"

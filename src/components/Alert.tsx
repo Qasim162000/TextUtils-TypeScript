@@ -5,11 +5,19 @@ import React from "react";
 //   type: string;
 // }
 
-interface Props {
-  customAlert: () => void | boolean;
-}
+// interface customAlert {
+//   message?: string;
+//   type?: string;
+//   // customAlert: ((message?: string, type?: string) => null) | null
+// }
+type AlertProps = {
+  customAlert: {
+    message: string;
+    type: string;
+  } | null;
+};
 
-const Alert: React.FC<Props> = () => {
+const Alert = (props: AlertProps) => {
   const capitalize = (word: string) => {
     // Method 1:
     // return word.charAt(0).toUpperCase() + word.slice(1);
@@ -19,12 +27,13 @@ const Alert: React.FC<Props> = () => {
     return firstCapitalized + word.slice(1);
   };
   return (
-    cAlert && (
+    props.customAlert && (
       <div
-        className={`alert alert-${alert.type} alert-dismissible fade show`}
+        className={`alert alert-${props.customAlert.message} alert-dismissible fade show`}
         role="alert"
       >
-        <strong>{capitalize(alert.type)}</strong>: {alert.message}
+        <strong>{capitalize(props.customAlert.type)}</strong>:{" "}
+        {props.customAlert.message}
       </div>
     )
   );
