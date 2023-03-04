@@ -1,18 +1,8 @@
 import React from "react";
 
-// interface cAlert {
-//   message: string;
-//   type: string;
-// }
-
-// interface customAlert {
-//   message?: string;
-//   type?: string;
-//   // customAlert: ((message?: string, type?: string) => null) | null
-// }
 type AlertProps = {
   customAlert: {
-    message: string;
+    msg: string;
     type: string;
   } | null;
 };
@@ -29,11 +19,11 @@ const Alert = (props: AlertProps) => {
   return (
     props.customAlert && (
       <div
-        className={`alert alert-${props.customAlert.message} alert-dismissible fade show`}
+        className={`alert alert-${props.customAlert.msg} alert-dismissible fade show`}
         role="alert"
       >
         <strong>{capitalize(props.customAlert.type)}</strong>:{" "}
-        {props.customAlert.message}
+        {props.customAlert.msg}
       </div>
     )
   );

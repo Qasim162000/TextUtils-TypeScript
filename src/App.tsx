@@ -6,14 +6,11 @@ import React, { useState, useEffect } from "react";
 import Alert from "./components/Alert";
 // import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// type setAlert = {
-//   msg: (prevState: null) => null;
-//   type: string;
-// };
-
-function App() {
+const App: React.FC = () => {
   const [mode, setMode] = useState("light"); //Whether dark mode is enabled or not
-  const [cAlert, setAlert] = useState(null);
+  const [cAlert, setAlert] = useState<{ msg: string; type: string } | null>(
+    null
+  );
   const [chosenColor, setChosenColor] = useState("black");
 
   const colorPalette = (color: string) => {
@@ -74,6 +71,6 @@ function App() {
       {/* </Router> */}
     </>
   );
-}
+};
 
 export default App;
