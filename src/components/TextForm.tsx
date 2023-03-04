@@ -1,7 +1,18 @@
 import React, { useState } from "react";
 
-export default function TextForm(props) {
-  const [text, setText] = useState("");
+type TextFormProps = {
+  showAlert: (message: string, type: string) => void;
+  mode: string;
+  heading: string;
+  bgColor: string;
+};
+
+// type OnChangeHandler = {
+//   event: (event: React.MouseEvent<HTMLInputElement>) => void;
+// };
+
+export default function TextForm(props: TextFormProps) {
+  const [text, setText] = useState<string>("");
 
   const handleUpClick = () => {
     let newText = text.toUpperCase();
@@ -28,7 +39,7 @@ export default function TextForm(props) {
     setText(newText);
     props.showAlert("Text in box cloned!", "success");
   };
-  const handleOnChange = (event) => {
+  const handleOnChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(event.target.value);
   };
 
@@ -58,7 +69,7 @@ export default function TextForm(props) {
               color: props.mode === "dark" ? "white" : "#042743",
             }}
             id="myBox"
-            rows="8"
+            rows={8}
           ></textarea>
         </div>
         <button className="btn btn-primary mx-1" onClick={handleUpClick}>
