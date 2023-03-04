@@ -117,7 +117,12 @@ export default function TextForm(props: TextFormProps) {
         </p>
         {/* uptil here */}
 
-        <p>{0.008 * text.split(" ").length} minutes to read</p>
+        {text.length > 0 ? (
+          <p>{0.008 * text.split(" ").length} minutes to read</p>
+        ) : (
+          <h6>Write some text to begin counting the estimated time to read</h6>
+        )}
+
         <h2>Preview</h2>
         <p>
           {text.length > 0
